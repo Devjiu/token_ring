@@ -13,6 +13,9 @@ Simple realization of Token Ring protocol via concurrent local queues.
  протокола для различных сценариев использования.
 # Средства измерения
 
+# Рассчет latency
+
+# Рассчет throughput
 
 #
 ![png](plots/output_1.png)
@@ -20,15 +23,14 @@ Simple realization of Token Ring protocol via concurrent local queues.
 #
 ![png](plots/output_2.png)
 
-#Инструментарий
+# Инструментарий
 "Обвязка" для исследования искомых характеристик (jupyter notebook)
 
 ```python
 import subprocess
 import numpy as np
 
-summary = {"throughput": [],
-            "latency": [],
+summary = { "latency": [],
             "cores": [],
             "messages": []}
 

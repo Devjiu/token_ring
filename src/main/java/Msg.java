@@ -8,5 +8,6 @@ public class Msg {
 
     Msg(long destinationId) {
         destination = destinationId;
+        chrono = System.nanoTime();
     }
 }

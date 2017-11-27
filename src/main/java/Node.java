@@ -1,5 +1,4 @@
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -8,10 +7,17 @@ import java.io.PrintWriter;
 public class Node implements Runnable{
     private MsgQueue inputMsgs;
     private Node nextNode;
-    private PrintWriter out = new PrintWriter(new FileWriter("D:/python_proj/log.txt"));
+    private PrintWriter out;
+    private long firstVisitTime = 0;
 
-    public Node() throws IOException {
-        inputMsgs = new MsgQueue();
+    public Node() {
+        try {
+            inputMsgs = new MsgQueue();
+            out = new PrintWriter(new FileWriter("D:/python_proj/log.txt"));
+        } catch (Exception e) {
+            System.out.println("Log file print error.");
+            System.exit(13);
+        }
     }
 
     public void setConnection(Node next) {
@@ -28,11 +34,15 @@ public class Node implements Runnable{
         Msg msg = inputMsgs.getMsg();
         //System.out.println("I am listening: " + Thread.currentThread().getId());
         if (msg == null) return;
-        if (msg.destination == 19) {
-            out.println("Node: " +
-                    Thread.currentThread().getId() +
-                    " Time: " + (System.nanoTime() - msg.chrono) + " ns");
-            msg.chrono =  System.nanoTime();
+        if ( msg.destination == 0) {
+            if (firstVisitTime == 0) {
+                firstVisitTime = System.nanoTime();
+            } else {
+                out.println("Node: " +
+                        Thread.currentThread().getId() +
+                        " Full Circle Latency: " + (System.nanoTime() - firstVisitTime) + " ns");
+                firstVisitTime = System.nanoTime();
+            }
         }
         if ( msg.destination == Thread.currentThread().getId()) {
             System.out.println("Achieved message for me: " + msg.destination + " and with text: " + msg.body);

@@ -40,7 +40,8 @@ public class Node implements Runnable{
             } else {
                 out.println("Node: " +
                         Thread.currentThread().getId() +
-                        " Full Circle Latency: " + (System.nanoTime() - firstVisitTime) + " ns");
+                        " Full Circle Latency: " + (System.nanoTime() - firstVisitTime) + " ns. "
+                );
                 firstVisitTime = System.nanoTime();
             }
         }

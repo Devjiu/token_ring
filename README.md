@@ -37,11 +37,18 @@ destinationID = 0 <br>(такой id невозможен для потоков,
 
 # Анализ результатов измерений
 ## Latency
-![png](plots/output_1.png)
+![png](plots/out_raw.png)
 
+![png](plots/out_1_norm.png)
 
 ## Throughput
-![png](plots/output_2.png)
+![png](plots/out_2_raw.png)
+
+![png](plots/out_throu_ns.png)
+
+![png](plots/out_throu_msg.png)
+
+# Возможные оптимизации
 
 
 # Инструментарий

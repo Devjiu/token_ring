@@ -25,14 +25,11 @@ public class Node implements Runnable{
     }
 
     public void sendMsg(Msg msg) {
-        //System.out.println("Achieved message: " + msg.destination + " and with text: " + msg.body +
-        //        ". Node num: " + Thread.currentThread().getId());
         inputMsgs.putMsg(msg);
     }
 
     public void readIncomeMsg() {
         Msg msg = inputMsgs.getMsg();
-        //System.out.println("I am listening: " + Thread.currentThread().getId());
         if (msg == null) return;
         if ( msg.destination == 0) {
             if (firstVisitTime == 0) {
